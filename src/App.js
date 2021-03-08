@@ -4,15 +4,12 @@ import axios from "axios";
 
 
 function App() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { countryList: [] };
-  // }
 
-  const [contryList,setCountryList] = useState([]);
+  const [countryList,setCountryList] = useState([]);
 
-  async selectedOptionInfo(event) {
+  const selectedOptionInfo = async (e) => {
     if (event.keyCode == 13) {
+      alert("key");
       setCountryList([]);
       const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
       var flagLink = "";
@@ -21,12 +18,12 @@ function App() {
        setCountryList(countryList.concat(value));
       });
     }
-  }
+  };
 
-    const countryNames = this.state.countryList.map((value, key) => {
+    const countryNames = countryList.map((value, key) => {
       return <option key={key}>{value}</option>;
     });
-    var obj = this.state.countryList;
+    var obj = countryList;
     obj.sort((a,b) => b.population -a.population);
     const tableContent = obj.map((data)=> 
     {return(
@@ -43,7 +40,7 @@ function App() {
     return (
       <div className="container">
         <input
-          onKeyPress={() => this.selectedOptionInfo(event)}
+          onKeyPress={(event) => selectedOptionInfo(event)}
           placeholder="enter country name"
         />
         <table>
