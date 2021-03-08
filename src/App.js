@@ -1,13 +1,15 @@
 import React, {useState , useCallback} from "react";
 import "./style.css";
 import axios from "axios";
-import debounce from "logash.debounce";
+import debounce from "lodash.debounce";
 
 
 function App() {
 
   const [countryList,setCountryList] = useState([]);
 
+  const onPressDebounce = useCallback(debounce(selectedOptionInfo,1000),[]);
+  
   const selectedOptionInfo = async (e) => {
     if (event.keyCode == 13) {
       setCountryList([]);
