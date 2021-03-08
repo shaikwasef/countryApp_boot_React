@@ -1,28 +1,28 @@
-import React, {useCallback} from "react";
+import React, {useState , useCallback} from "react";
 import "./style.css";
 import axios from "axios";
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { countryList: [] };
-  }
+function App() {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { countryList: [] };
+  // }
 
+  const [contryList,setCountryList] = useState([]);
 
   async selectedOptionInfo(event) {
     if (event.keyCode == 13) {
-      this.setState({countryList : []});
+      setCountryList([]);
       const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
       var flagLink = "";
       const info = await axios.get(url);
       info.data.forEach(value => {
-        this.setState({countryList : this.state.countryList.concat(value)});
+       setCountryList(countryList.concat(value));
       });
     }
   }
 
-  render() {
     const countryNames = this.state.countryList.map((value, key) => {
       return <option key={key}>{value}</option>;
     });
@@ -59,7 +59,6 @@ class App extends React.Component {
         </table>
       </div>
     );
-  }
 }
 
 export default App;
