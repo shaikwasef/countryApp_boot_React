@@ -8,9 +8,8 @@ function App() {
 
   const [countryList,setCountryList] = useState([]);
 
-  
 
-  const selectedOptionInfo = async (e) => {
+  const selectedOptionInfo = async (value) => {
       setCountryList([]);
       const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
       const info = await axios.get(url);
@@ -38,7 +37,7 @@ function App() {
     return (
       <div className="container">
         <input
-          onKeyPress={onPressDebounce}
+          onKeyPress={(event) => onPressDebounce(event.target.value)}
           placeholder="enter country name"
         />
         <table>
