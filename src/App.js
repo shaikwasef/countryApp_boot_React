@@ -8,19 +8,18 @@ function App() {
 
   const [countryList,setCountryList] = useState([]);
 
-  const onPressDebounce = useCallback(debounce(selectedOptionInfo,1000),[]);
   
+
   const selectedOptionInfo = async (e) => {
-    if (event.keyCode == 13) {
       setCountryList([]);
       const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
       const info = await axios.get(url);
       info.data.map(value => {
        setCountryList(countryList => countryList.concat(value));
       });
-    }
   };
 
+  const onPressDebounce = useCallback(debounce(selectedOptionInfo,1000),[]);
 
     var obj = countryList;
     obj.sort((a,b) => b.population -a.population);
@@ -39,7 +38,7 @@ function App() {
     return (
       <div className="container">
         <input
-          onKeyPress={(event) => selectedOptionInfo(event)}
+          onKeyPress={onPressDebounce}
           placeholder="enter country name"
         />
         <table>
