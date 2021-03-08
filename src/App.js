@@ -11,10 +11,9 @@ function App() {
     if (event.keyCode == 13) {
       setCountryList([]);
       const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
-      var flagLink = "";
       const info = await axios.get(url);
-      info.data.forEach(value => {
-       setCountryList(countryList.concat(value));
+      info.data.map(value => {
+       setCountryList(countryList => countryList.concat(value));
       });
     }
   };
