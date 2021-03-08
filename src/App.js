@@ -11,7 +11,7 @@ function App() {
 
   const selectedOptionInfo = async (value) => {
       setCountryList([]);
-      const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
+      const url = "https://restcountries.eu/rest/v2/name/" + value;
       const info = await axios.get(url);
       info.data.map(value => {
        setCountryList(countryList => countryList.concat(value));
