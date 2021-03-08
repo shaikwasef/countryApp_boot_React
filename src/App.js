@@ -9,7 +9,6 @@ function App() {
 
   const selectedOptionInfo = async (e) => {
     if (event.keyCode == 13) {
-      alert("key");
       setCountryList([]);
       const url = "https://restcountries.eu/rest/v2/name/" + event.target.value;
       var flagLink = "";
@@ -20,9 +19,7 @@ function App() {
     }
   };
 
-    const countryNames = countryList.map((value, key) => {
-      return <option key={key}>{value}</option>;
-    });
+
     var obj = countryList;
     obj.sort((a,b) => b.population -a.population);
     const tableContent = obj.map((data)=> 
@@ -44,6 +41,7 @@ function App() {
           placeholder="enter country name"
         />
         <table>
+        <tbody>
           <tr>
             <th>FLAG</th>
             <th>NAME</th>
@@ -53,6 +51,7 @@ function App() {
             <th>POPULATION</th>
           </tr>
           {tableContent}
+          </tbody>
         </table>
       </div>
     );
